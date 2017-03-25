@@ -3,12 +3,12 @@ using HotSwap.DTOs;
 
 namespace HotSwap.Repositories
 {
-    public class ItemRepository
+    public class ItemsRepository
     {
-        public static ItemRepository ItemsRepository { get; set; } = new ItemRepository();
+        public static ItemsRepository TemporaryItems { get; set; } = new ItemsRepository();
         public List<ItemDto> ItemDtos { get; set; }
 
-        public ItemRepository()
+        public ItemsRepository()
         {
             ItemDtos = new List<ItemDto>
             {

@@ -9,13 +9,13 @@ namespace HotSwap.Controllers
         [HttpGet("api/items")]
         public IActionResult GetItem()
         {
-            return Ok(ItemRepository.ItemsRepository.ItemDtos);
+            return Ok(ItemsRepository.TemporaryItems.ItemDtos);
         }
 
         [HttpGet("api/items/{id}")]
         public IActionResult GetItem(int id)
         {
-            var item = ItemRepository.ItemsRepository.ItemDtos.FirstOrDefault(i => i.Id == id);
+            var item = ItemsRepository.TemporaryItems.ItemDtos.FirstOrDefault(i => i.Id == id);
             if (item == null)
             {
                 return NotFound();
