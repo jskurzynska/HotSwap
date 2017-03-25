@@ -7,7 +7,7 @@ namespace HotSwap.Controllers
     public class ItemsController : Controller
     {
         [HttpGet("api/items")]
-        public IActionResult GetItem()
+        public IActionResult GetItems()
         {
             return Ok(ItemsRepository.TemporaryItems.ItemDtos);
         }
