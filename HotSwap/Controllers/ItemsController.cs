@@ -6,6 +6,13 @@ namespace HotSwap.Controllers
 {
     public class ItemsController : Controller
     {
+        private IItemsRepository _itemsRepository;
+
+        public ItemsController(IItemsRepository itemsRepository)
+        {
+            _itemsRepository = itemsRepository;
+        }
+
         [HttpGet("api/items")]
         public IActionResult GetItems()
         {
