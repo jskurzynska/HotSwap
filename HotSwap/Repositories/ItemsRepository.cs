@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using HotSwap.DTOs;
 
 namespace HotSwap.Repositories
 {
     public class ItemsRepository : IItemsRepository
     {
-        public static ItemsRepository TemporaryItems { get; set; } = new ItemsRepository();
         public List<ItemDto> ItemDtos { get; set; }
 
         public ItemsRepository()
@@ -16,6 +16,16 @@ namespace HotSwap.Repositories
                 new ItemDto {Id = 2, Name="Tell no one", Description = "Harlan Coben book", ItemCategoryId = 2, ItemStatusId = 2},
                 new ItemDto {Id = 3, Name="LOL", Description = "Just LOL", ItemCategoryId = 4, ItemStatusId = 2}
             };
+        }
+
+        public List<ItemDto> GetAllItems()
+        {
+            return ItemDtos;
+        }
+
+        public ItemDto GetItemById(int id)
+        {
+            return ItemDtos.FirstOrDefault(i => i.Id == id);
         }
     }
 }

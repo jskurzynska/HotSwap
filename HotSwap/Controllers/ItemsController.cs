@@ -1,12 +1,10 @@
-﻿using System.Linq;
-using HotSwap.Repositories;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 
 namespace HotSwap.Controllers
 {
     public class ItemsController : Controller
     {
-        private IItemsRepository _itemsRepository;
+        private readonly IItemsRepository _itemsRepository;
 
         public ItemsController(IItemsRepository itemsRepository)
         {
@@ -16,13 +14,13 @@ namespace HotSwap.Controllers
         [HttpGet("api/items")]
         public IActionResult GetItems()
         {
-            return Ok(ItemsRepository.TemporaryItems.ItemDtos);
+            return Ok(_itemsRepository.GetAllItems());
         }
 
         [HttpGet("api/items/{id}")]
         public IActionResult GetItem(int id)
         {
-            var item = ItemsRepository.TemporaryItems.ItemDtos.FirstOrDefault(i => i.Id == id);
+            var item = _itemsRepository.GetItemById(id);
             if (item == null)
             {
                 return NotFound();
